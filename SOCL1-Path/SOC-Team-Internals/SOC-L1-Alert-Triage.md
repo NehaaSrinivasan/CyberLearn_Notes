@@ -37,8 +37,6 @@ An overview of what alerts and events are, how to prioritise them, the fields pr
 
 ## Alert Dashboard Fields
 
-Every alert in the dashboard contains the following fields:
-
 | Field | Purpose |
 |-------|---------|
 | **Name** | Title of the alert |
@@ -62,8 +60,6 @@ Every alert in the dashboard contains the following fields:
 
 ## Alert Triage Workflow
 
-The triage process is divided into three stages:
-
 ### Stage 1 — Initial Actions
 - Assign the alert to yourself
 - Change status to **In Progress**
@@ -72,38 +68,49 @@ The triage process is divided into three stages:
 ### Stage 2 — Investigation
 - Use a **playbook or workbook** to guide your investigation
 - Follow the steps defined in the playbook to understand what happened
-- Check if the alert is a known pattern (refer to past alerts/runbooks)
+- Check if the alert matches a known pattern
 - Analyse findings in the SIEM
 
 ### Stage 3 — Final Actions
 - Make a **verdict** — True Positive or False Positive
 - Decide whether **escalation** is needed
-  - If yes — assign to the right person (e.g. L2) and write a note explaining findings and reason for escalation
+  - If yes — assign to the right person and write a note explaining findings and reason for escalation
   - If no — document your analysis and close the alert
 
 ---
 
-## Alert Triage Flow (from handwritten notes)
+## Alert Triage Flow
 
 ```
 Alert received
-    |
-    v
-Prioritise --> Assign to yourself --> Immediately change to In-Progress
-    |
-    v
+      |
+      v
+Prioritise → Assign to yourself → Change status to In Progress
+      |
+      v
 Is escalation needed?
-    |
-   Yes --> Assign to L2 --> Change to In-Progress --> Read alert details (CIP, test, hashes used)
-    |
-   No --> Need escalation?
+      |
+     Yes → Assign to L2 → Write notes and reason
+      |
+      No → Investigate using playbook
               |
-             Yes --> Check playbook --> In playbook? 
-                          |
-                         No --> Analyse/Investigate in SIEM --> Make final verdict
+         In playbook? → Yes → Follow steps → Make verdict
               |
-             No --> Alert conditions (close/mark)
+              No → Analyse in SIEM → Make verdict
 ```
+
+---
+
+## Personal Reflection
+
+**On severity and time prioritisation:**
+High severity alerts are worked on first because they cause the most damage to systems and networks if left unattended. A critical alert like ransomware spreading needs immediate attention — every minute of delay means more systems affected. Time ordering ensures the oldest unresolved alerts don't get forgotten. Together they help the L1 analyst focus, save time, and work efficiently through the queue.
+
+**On playbooks:**
+Playbooks save time because if the same alert has happened before and is already documented, the analyst doesn't need to spend days figuring it out from scratch. This is exactly why documentation is a must in alert triage — today's investigation becomes tomorrow's playbook.
+
+**On true vs false positives:**
+True positives are real security incidents. False positives appear to be incidents but aren't — often caused by misconfigured detection rules. For example a rule that flags 3 login attempts from different locations might trigger on someone who simply typed their password wrong 3 times from the same location. Getting this wrong matters because chasing false positives wastes time while real threats go unnoticed.
 
 ---
 
