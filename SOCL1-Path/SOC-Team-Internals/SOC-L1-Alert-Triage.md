@@ -79,28 +79,6 @@ An overview of what alerts and events are, how to prioritise them, the fields pr
 
 ---
 
-## Alert Triage Flow
-
-```
-Alert received
-      |
-      v
-Prioritise → Assign to yourself → Change status to In Progress
-      |
-      v
-Is escalation needed?
-      |
-     Yes → Assign to L2 → Write notes and reason
-      |
-      No → Investigate using playbook
-              |
-         In playbook? → Yes → Follow steps → Make verdict
-              |
-              No → Analyse in SIEM → Make verdict
-```
-
----
-
 ## Personal Reflection
 
 **On severity and time prioritisation:**
